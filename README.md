@@ -1,6 +1,6 @@
 # Advanced_matching
 Matching case/control groups is an essential step in clinical/public health research.  
-By this easy-understanding and straightfoward SAS program, one can fulfill the truly one-on-one(Sampling without replacement) 1:4 matching.   
+By this easy-understanding and straightfoward SAS program, one can fulfill the truly one-on-one(Sampling Without Replacement) 1:4 matching.   
 The following is the pseudocode: 
 1. Duplicate the case_id(s) to control_id(s) they matched.   
 2. Give each control_id an random number.   
@@ -10,4 +10,4 @@ The following is the pseudocode:
 6. Take away the first case_id and first 4 control_id(s) from the "REMAINING" dataset and name it match_2.
 7. Do step 5. again(*remove from the "REMAINING" dataset).  
 8. Merge match_1 to match_n.
-9. Okay.
+9. End.
