@@ -1,3 +1,4 @@
+/*Step 1.*/
 PROC SQL; 
 CREATE table match as select
 a.id as case_id,
@@ -6,25 +7,27 @@ a.agegroup as case_age,
 b.agegroup as control_age,
 a.id_sex as case_sex,
 b.id_sex as control_sex,
-a.location2 as case_location,
-b.location2 as control_location,
-a.year2 as case_year,
-b.year2 as control_year
-from judyd.xxx as a, judyd.yyy as b
-where (a.agegroup = b.agegroup and a.id_sex = b.id_sex and a.location2 = b.location2 and a.year2 = b.year2);
+a.location as case_location,
+b.location as control_location,
+a.year as case_year,
+b.year as control_year
+from light.case as a, light.control as b
+where (a.agegroup = b.agegroup and a.id_sex = b.id_sex and a.location = b.location and a.year = b.year);
 quit;
 
+/*Step 2.*/
 data match;
 set match;
 rand = ranuni(0);
 run;
 
+/*Step 3.*/
 proc sort data = match;
 by case_id rand;
 run;
 
 
-/*pre macro*/
+/* TEST *//* TEST *//* TEST *//* TEST *//* TEST *//* TEST */
 data match1;
 set match;
 if _N_ <=4;
@@ -44,9 +47,9 @@ data match2;
 set match;
 if _N_ <=4;
 run;
-/*pre macro*/
+/* TEST *//* TEST *//* TEST *//* TEST *//* TEST *//* TEST */
 
-
+/*Step 4. 5. 6. 7.*/
 %macro advanced_match();
  %do i = 1 %to 520;
 
@@ -65,6 +68,7 @@ run;
 
 %advanced_match;
 
+/*Step 8.*/
 data final_match;
 set match1 - match520;
 run;
